@@ -1,0 +1,12 @@
+{
+    "type": "project",
+    "require": {
+        "react/async": "^v4.0.0",
+        "react/http": "^1.7",
+        "react/socket": "^1.12",
+        "react/stream": "^1.2"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    }
+}

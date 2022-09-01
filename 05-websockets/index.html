@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket</title>
+</head>
+<body>
+  <output></output>
+  <input type="text">
+
+  <script>
+    const input = document.querySelector('input')
+    const output = document.querySelector('output')
+    const webSocket = new WebSocket('ws://localhost:8003')
+    const br = document.createElement('br')
+
+    input.addEventListener('keypress', event => {
+      const inputValue = input.value
+
+      if (event.key !== 'Enter' || !inputValue) {
+        return
+      }
+
+      const div = document.createElement('div')
+
+      div.textContent = `Eu: ${ inputValue }`
+
+      output.append(div, br)
+
+      webSocket.send(inputValue)
+
+      input.textContent = ''
+    })
+
+    webSocket.addEventListener('message', message => {
+      const div = document.createElement('div')
+
+      div.textContent = `Outro: ${ message.data }`
+
+      output.append(div, br)
+    })
+  </script>
+</body>
+</html>
